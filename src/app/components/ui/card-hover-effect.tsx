@@ -10,7 +10,6 @@ export const HoverEffect = ({
     items: {
         title: string;
         description: string;
-        link: string;
     }[];
     className?: string;
 }) => {
@@ -19,7 +18,7 @@ export const HoverEffect = ({
     return (
         <div className={cn("grid grid-cols-1  py-10", className)}>
             {items.map((item, idx) => (
-                <Link href={item?.link} key={item?.link} className="relative group  block p-2 h-full w-full" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
+                <div key={item?.title} className="relative group  block p-2 h-full w-full cursor-pointer" onMouseEnter={() => setHoveredIndex(idx)} onMouseLeave={() => setHoveredIndex(null)}>
                     <AnimatePresence>
                         {hoveredIndex === idx && (
                             <motion.span
@@ -41,7 +40,7 @@ export const HoverEffect = ({
                         <CardTitle>{item.title}</CardTitle>
                         <CardDescription>{item.description}</CardDescription>
                     </Card>
-                </Link>
+                </div>
             ))}
         </div>
     );
